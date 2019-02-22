@@ -28,6 +28,8 @@ class Mood(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
 
+    class Meta:
+        ordering = ('-created_date',)
     # def get_percentile(self):
     #     moods = Mood.objects.all()
     #     total_moods = sum([current_mood.mood for current_mood in moods])
