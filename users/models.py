@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from mood.models import Mood
 import datetime
+from scipy.stats import percentileofscore
 # from django.contrib.auth import get_user_model
 # UserModel = get_user_model()
 # Create your models here.
@@ -57,7 +58,11 @@ class CustomUser(AbstractUser):
         return max_streak
 
     def get_max_streak_percentile(self):
-        pass
+        users = CustomUser.objects.all()
+        all_max_streaks = [user.get_max_streak() for user in users]
+        my_max_streak = self.get_max_streak()
+        return percentileofscore(all_max_streaks,my_max_streak)
+
 
     # def get_percentile(self):
     #     moods = Mood.objects.all()

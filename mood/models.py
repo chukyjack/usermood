@@ -1,7 +1,8 @@
-from django.contrib.auth import get_user_model
-# UserModel = get_user_model()
+#
+# # UserModel = get_user_model()
 from django.conf import settings
 from django.db import models
+from django.contrib.auth import get_user_model
 
 from _datetime import datetime
 from django.http import request

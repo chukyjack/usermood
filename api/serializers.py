@@ -26,7 +26,7 @@ class MoodSerializer(serializers.ModelSerializer):
         fields = ('mood',)
 
     # def to_representation(self, instance):
-    #     result = super(MoodSerializer, self).to_representation(instance)
+    #     result = super(MoodSerializer, self).to_repraesentation(instance)
     #     return OrderedDict([(key, result[key]) for key in result if not (key == 'percentiles' and result[key]  > 19)])
 
     def create(self, data):
