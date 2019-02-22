@@ -13,7 +13,8 @@ class CustomUser(AbstractUser):
 
     def get_current_streak(self):
         user_id = self.id
-        mood_dates = list(Mood.objects.values('created_date').filter(created_by_id=user_id).order_by('created_date'))
+        mood_dates = [mood_date['created_date'] for mood_date in
+                      Mood.objects.values('created_date').filter(created_by_id=user_id)]
         # date = datetime.date(mood_dates[1]['created_date']) - datetime.date(mood_dates[0]['created_date'])
         # print(date)
         current_streak = 0
@@ -21,15 +22,15 @@ class CustomUser(AbstractUser):
         today = datetime.date.today()
         next_date = today + datetime.timedelta(1)
         for mood_date in mood_dates:
-            mood_date = mood_date['created_date']
-            interval = (next_date - mood_date.date()).days
-            if  interval == 1:
-                current_streak +=1
+            mood_date = mood_date.date()
+            interval = (next_date - mood_date).days
+            if interval == 1:
+                current_streak += 1
             elif interval == 0:
                 pass
             else:
                 break
-            next_date = mood_date.date()
+            next_date = mood_date
 
         return current_streak
 
