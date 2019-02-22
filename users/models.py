@@ -21,18 +21,18 @@ class CustomUser(AbstractUser):
         interval = 0
         today = datetime.date.today()
         next_date = today + datetime.timedelta(1)
-        # for mood_date in mood_dates:
-        #     mood_date = mood_date.date()
-        #     interval = (next_date - mood_date).days
-        #     if interval == 1:
-        #         current_streak += 1
-        #     elif interval == 0:
-        #         pass
-        #     else:
-        #         break
-        #     next_date = mood_date
+        for mood_date in mood_dates:
+            mood_date = mood_date.date()
+            interval = (next_date - mood_date).days
+            if interval == 1:
+                current_streak += 1
+            elif interval == 0:
+                pass
+            else:
+                break
+            next_date = mood_date
 
-        return mood_dates#(next_date-today).days
+        return current_streak
 
     def get_max_streak(self):
         user_id = self.id
