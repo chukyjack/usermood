@@ -102,8 +102,10 @@ class ListMood(generics.ListCreateAPIView):
         # Add data to response.data Example for your object:
         user = self.request.user
         moods = user.mood_set.all()
-        mood_stat = [{'Current streak': user.get_current_streak()},
-                     {'Maximum streak percentile': user.get_max_streak_percentile()}]
+        max_streak_percentile = user.get_max_streak_percentile()
+        mood_stat = [{'Current streak': user.get_current_streak()}]
+        if max_streak_percentile >= 50:
+            mood_stat.append({'Maximum streak percentile': user.get_max_streak_percentile()})
         response.data = mood_stat + response.data # Or wherever you get this values from
         return response
 
