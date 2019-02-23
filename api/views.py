@@ -31,6 +31,6 @@ class ListMood(generics.ListCreateAPIView):
         max_streak_percentile = user.get_max_streak_percentile()
         mood_stat = [{'Current streak': user.get_current_streak()}]
         if max_streak_percentile >= 50:
-            mood_stat.append({'Maximum streak percentile': user.get_max_streak_percentile()})
+            mood_stat.append({'Maximum streak percentile': int(user.get_max_streak_percentile())})
         response.data = mood_stat + response.data
         return response
