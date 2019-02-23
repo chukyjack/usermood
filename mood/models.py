@@ -1,15 +1,7 @@
-#
-# # UserModel = get_user_model()
 from django.conf import settings
 from django.db import models
-from django.contrib.auth import get_user_model
 
-from _datetime import datetime
-from django.http import request
-# # Create your models here.
-# UserModel = get_user_model()
-#
-#
+
 class Mood(models.Model):
     VERY_LOW = 1
     LOW = 2
@@ -30,34 +22,3 @@ class Mood(models.Model):
 
     class Meta:
         ordering = ('-created_date',)
-    # def get_percentile(self):
-    #     moods = Mood.objects.all()
-    #     total_moods = sum([current_mood.mood for current_mood in moods])
-    #     my_moods = sum(mood.rate for mood in moods if mood.created_by == self.created_by)
-    #     return int(my_moods/total_moods)
-    #
-    # def get_date(self):
-    #     date = Mood.objects.filter(created_by=self.created_by).first()
-    #     return date.created_date
-
-# # class MoodStat(models.Model):
-# #     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
-# #
-# #
-# #     def get_percentile(self):
-# #         moods = Mood.objects.all()
-# #         total_moods = sum([mood.rate for mood in moods])
-# #         my_moods = sum(mood.rate for mood in moods if mood.created_by == self.user)
-# #         return int(my_moods/total_moods)
-# #
-# #     def get_streak(self):
-# #         date = Mood.objects.filter(created_by=self.user).first()
-# #         return date.created_date
-#
-# # class User(AbstractUser):
-# #
-# #     def get_percentile(self):
-# #         moods = Mood.objects.all()
-# #         total_moods = sum([mood.rate for mood in moods])
-# #         my_moods = sum(mood.rate for mood in moods if mood.created_by == self.created_by)
-# #         return int(my_moods/total_moods)
