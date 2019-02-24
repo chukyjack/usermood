@@ -27,7 +27,6 @@ class ListMood(generics.ListCreateAPIView):
         '''
         response = super().list(request, args, kwargs)
         user = self.request.user
-        moods = user.mood_set.all()
         max_streak_percentile = user.get_max_streak_percentile()
         mood_stat = [{'Current streak': user.get_current_streak()}]
         if max_streak_percentile >= 50:
