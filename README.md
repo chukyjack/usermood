@@ -12,6 +12,22 @@ Requirements
 =================
 Please see requirements.txt file.
 
+How to use
+=====================
+Install requirements.
+
+Navigate to the project folder via command line.
+
+Run the server on your local machine using 'manage.py runserver'.
+
+Goto to link http://127.0.0.1:8000/api/v1/mood/
+
+Login using the link on the top right corner.
+
+Demo login details:
+username: admin
+password: admin
+
 Recommendation for running in production environment
 =====================================================
 I used the default sqlite database which you get from django, but you can you a different database just change the datbase connection 
@@ -26,5 +42,5 @@ Its advisable to version the API endpoints, to avoid failure with clients app al
 need to change some things like data type. We create a new enpoint with the new data and clients are given option to update to the new
 version.
 
-For scaling you can add our app in multiple container and distribute the load using NGINX. 
+For scaling you can create multiple containers and distribute the load using NGINX load balancer. 
 
